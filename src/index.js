@@ -40,7 +40,7 @@ app.command('/generate', async ({ command, ack, client, respond }) => {
     // If no text is provided, respond with a helpful message
     if (!command.text || command.text.trim() === '') {
       await respond({
-        text: 'Please provide some text with the /generate command.',
+        text: 'We do not accept empty parameter for the /generate command.',
         response_type: 'ephemeral'
       });
       return;
@@ -49,7 +49,7 @@ app.command('/generate', async ({ command, ack, client, respond }) => {
     // Post a message in the channel where the command was invoked
     const result = await client.chat.postMessage({
       channel: command.channel_id,
-      text: `<@${command.user_id}> used /generate command`,
+      text: `<@${command.user_id}> submitted an experiment with the following`,
       // Save the thread_ts to reply in thread
       thread_ts: command.thread_ts || undefined
     });
@@ -65,19 +65,19 @@ app.command('/generate', async ({ command, ack, client, respond }) => {
           type: 'section',
           text: {
             type: 'mrkdwn',
-            text: `*Generated content:*\n${command.text}`
+            text: `*Generated content:*\n\`\`\`${command.text}\`\`\``
           }
         }
       ]
     });
 
     // Provide feedback to the user that the command was successful
-    if (!command.thread_ts) {
-      await respond({
-        text: 'Your message has been posted in a new thread!',
-        response_type: 'ephemeral'
-      });
-    }
+    // if (!command.thread_ts) {
+    //   await respond({
+    //     text: 'Your message has been posted in a new thread!',
+    //     response_type: 'ephemeral'
+    //   });
+    // }
   } catch (error) {
     console.error('Error handling /generate command:', error);
     await respond({
