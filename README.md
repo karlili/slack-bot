@@ -70,21 +70,40 @@ SLACK_APP_TOKEN=xapp-your-app-token
 
 ## Installation
 
+### JavaScript Implementation
 ```bash
 npm install
 ```
 
+### Python Implementation
+```bash
+pip install slack-bolt
+pip install python-dotenv
+```
+
 ## Running the Bot
 
+### JavaScript
 ```bash
 node index.js
 ```
 
+### Python
+```bash
+python app.py
+```
+
 ## Available Commands
 
-- `/hello [text]` - Responds with a greeting and echoes back your text
-- `/weather [location]` - Provides a mock weather forecast for the specified location
-- `/generate [text]` - Creates a new thread and posts the provided text in that thread
+### `/hello`
+- **JavaScript**: Responds with a greeting and image
+- **Python**: Similar functionality with improved image handling
+
+### `/generate`
+- Creates a new thread
+- Supports text content
+- Can upload multiple images in the thread
+- Handles file uploads with proper error handling
 
 ## Interactive Features
 
@@ -102,3 +121,40 @@ app.command('/newcommand', async ({ command, ack, say }) => {
 ```
 
 Remember to add the new command in your Slack app settings as well.
+
+## File Structure
+
+```
+├── src/
+│   ├── index.js          # JavaScript implementation
+├── python/
+│   ├── app.py           # Python implementation
+├── static/
+│   ├── images/          # Static images directory
+├── .env                 # Environment variables
+└── README.md
+```
+
+## Image Handling
+
+The bot supports uploading images from the local `static/images` directory. Both implementations include:
+- File type validation
+- Error handling
+- Thread-based responses
+- Multiple file upload support
+
+## Error Handling
+
+Both implementations include comprehensive error handling for:
+- File operations
+- API calls
+- Invalid commands
+- Missing parameters
+
+## Contributing
+
+Feel free to submit issues and enhancement requests!
+
+## License
+
+[Your chosen license]
