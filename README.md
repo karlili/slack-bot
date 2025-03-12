@@ -11,18 +11,21 @@ This is a Slack bot that handles slash commands using Socket Mode. The bot is bu
 ## Setup
 
 1. **Create a Slack App**:
+
    - Go to [https://api.slack.com/apps](https://api.slack.com/apps)
    - Click "Create New App" and choose "From scratch"
    - Name your app and select your workspace
    - Click "Create App"
 
 2. **Enable Socket Mode**:
+
    - In your app settings, go to "Socket Mode" in the sidebar
    - Toggle "Enable Socket Mode" to on
    - Generate an app-level token with the `connections:write` scope
    - Save the token as `SLACK_APP_TOKEN` in your `.env` file
 
 3. **Set Up Slash Commands**:
+
    - Go to "Slash Commands" in the sidebar
    - Click "Create New Command"
    - For each command (e.g., `/hello`, `/weather`), set:
@@ -33,6 +36,7 @@ This is a Slack bot that handles slash commands using Socket Mode. The bot is bu
    - Click "Save"
 
 4. **Set Up Bot Token Scopes**:
+
    - Go to "OAuth & Permissions" in the sidebar
    - Under "Scopes", add the following Bot Token Scopes:
      - `commands` (to handle slash commands)
@@ -41,6 +45,7 @@ This is a Slack bot that handles slash commands using Socket Mode. The bot is bu
      - Add any other scopes needed for your specific functionality
 
 5. **Install the App to Your Workspace**:
+
    - Go to "Install App" in the sidebar
    - Click "Install to Workspace"
    - Review the permissions and click "Allow"
@@ -91,9 +96,9 @@ To add more slash commands, simply add more `app.command()` handlers in `index.j
 
 ```javascript
 app.command('/newcommand', async ({ command, ack, say }) => {
-  await ack();
-  await say(`Processing your command: ${command.text}`);
-});
+  await ack()
+  await say(`Processing your command: ${command.text}`)
+})
 ```
 
 Remember to add the new command in your Slack app settings as well.
